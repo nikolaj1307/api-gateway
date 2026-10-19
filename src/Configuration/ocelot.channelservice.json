@@ -3,12 +3,57 @@
     {
       "Key": "channel",
       "UpstreamPathTemplate": "/channel",
-      "UpstreamHttpMethod": ["GET"],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "DownstreamPathTemplate": "/api/channel",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "host.docker.internal", "Port": 5001 }
-      ]
+        {
+          "Host": "host.docker.internal",
+          "Port": 5001
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ],
+        "AllowedScopes": [
+          "channel"
+        ]
+      },
+      "RouteClaimsRequirement": {
+        "Role": "channel"
+      }
+    },
+    {
+      "Key": "channel-id",
+      "UpstreamPathTemplate": "/channel/ById",
+      "UpstreamHttpMethod": [
+        "GET", "DELETE"
+      ],
+      "DownstreamPathTemplate": "/api/channel/ById",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 5001
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKeys": [
+          "Bearer"
+        ],
+        "AllowedScopes": [
+          "channel"
+        ]
+      },
+      "RouteClaimsRequirement": {
+        "Role": "channel"
+      },
+      "AddHeadersToRequest": {
+        "ChannelId": "Claims[sub] > value"
+      }
     }
   ]
 }

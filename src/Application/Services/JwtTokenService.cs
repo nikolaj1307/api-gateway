@@ -29,12 +29,15 @@ public class JwtTokenService
         var claims = new List<Claim>();
         foreach (var claim in options.Claims)
         {
-            if (claim.Key == "sub")
+            var claimType = claim.Key switch
             {
-                claims.Add(new Claim(JwtRegisteredClaimNames.Sub, claim.Value));
-                continue;
-            }
-            claims.Add(new Claim(claim.Key, claim.Value));
+                "sub" => JwtRegisteredClaimNames.Sub,
+                "scope" => "scope",
+                "role" => "Role",
+                _ => claim.Key
+            };
+
+            claims.Add(new Claim(claimType, claim.Value));
         }
 
         var tokenOptions = new JwtSecurityToken(
