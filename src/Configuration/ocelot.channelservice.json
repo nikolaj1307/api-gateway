@@ -1,10 +1,10 @@
 {
   "Routes": [
     {
-      "Key": "local-example-replace-me",
-      "UpstreamPathTemplate": "/example/{id}",
+      "Key": "channel",
+      "UpstreamPathTemplate": "/channel",
       "UpstreamHttpMethod": ["GET"],
-      "DownstreamPathTemplate": "/api/example/{id}",
+      "DownstreamPathTemplate": "/api/channel",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         { "Host": "host.docker.internal", "Port": 5001 }
