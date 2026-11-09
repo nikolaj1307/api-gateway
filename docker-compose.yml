@@ -10,3 +10,12 @@ services:
       ASPNETCORE_HTTP_PORTS: "8080"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - shared-network
+      
+      
+      
+networks:
+  shared-network:
+    external: true
+    name: shared-network
