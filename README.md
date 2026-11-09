@@ -106,3 +106,15 @@ python3 tests/smoke.py
 ```
 
 The smoke test publishes a clean copy, starts a temporary downstream HTTP service and gateway, then checks routing, Swagger, the faucet, authentication, scope/role authorization, identity-header replacement, path transformation, token expiry and configuration changes after restart. It changes only temporary files and stops its own servers. The student starter routes remain unprotected.
+
+## Note
+JWT claims needed
+```json
+{
+  "claims": {
+    "role": "channel",
+    "scope": "channel",
+    "sub": "insert-channel-id-here"
+  }
+}
+```
