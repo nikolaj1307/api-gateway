@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Vault read
 #region Vault Read
 var address = Environment.GetEnvironmentVariable("VAULT_ADDR")
-              ?? "http://vault:8200";
+              ?? "SETUP MISSING VAULT_ADDR";
 
-var token = Environment.GetEnvironmentVariable("VAULT_TOKEN") ?? "DO NOT HARDCODE TOKEN";
+var token = Environment.GetEnvironmentVariable("VAULT_TOKEN") ?? "SETUP MISSING VAULT_TOKEN";
 
 using var client = new HttpClient
 {
@@ -22,7 +22,7 @@ using var client = new HttpClient
 client.DefaultRequestHeaders.Add("X-Vault-Token", token);
 using var response = await client.GetAsync("v1/secret/data/pingpong");
 if (response.StatusCode == HttpStatusCode.Forbidden)
-    throw new InvalidOperationException("Vault denied access: check token, TTL and policy.");
+    throw new InvalidOperationException("Vault denied access: check token, TTL and policy." + (int)response.StatusCode);
 
 response.EnsureSuccessStatusCode();
 using var document = JsonDocument.Parse(await response.Content.ReadAsStringAsync());

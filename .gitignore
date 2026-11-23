@@ -133,4 +133,6 @@ $RECYCLE.BIN/
 # Idea for JetBrains IDEs
 .idea
 
+.env
+
 _NCrunch*
