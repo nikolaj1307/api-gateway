@@ -53,6 +53,5 @@ Call this GET method at http://localhost:8080/channel/ById
 
 Set the following properties:
 - Go to the ```Authorization```tab, and set the bearer token.
-- Go to the ```Headers``` tab, then insert ```ChannelId``` under ```Key``` and paste a valid ```ChannelId``` under the ```Value```.
 
 This should let you call the GET endpoint from the ```bizcord``` project and returns the channel corresponding to the given ID.
