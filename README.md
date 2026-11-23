@@ -47,7 +47,8 @@ Run in the following order:
 
 4. We suggest that you use ```Postman```, when calling through the gateway.
 
-**Example** 
+**Example:** 
+
 Call this GET method at http://localhost:8080/channel/ById
 
 Set the following properties:
